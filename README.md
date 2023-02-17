@@ -4,16 +4,7 @@ In this project I model the behaviour of a Double Pendulum with LSTM, and compar
 
 The interesting aspect with solving partial derivative equations with Deep Neural Networks is that it is extremely fast to generate simulations. It takes a lot of time to train the models, but once it is trained, it is ready.
 
-<p align="center">
- <img src="imgs/pendulum.jpg" width="60%" height="60%">
-</p>
 
-<video src="imgs/animation.mp4" controls="controls" style="max-width: 730px;">
-</video>
-
-<p align="center">
- <video src="imgs/animation.mp4" width="60%" height="60%">
-</p>
 
 
 
@@ -32,9 +23,10 @@ https://user-images.githubusercontent.com/93766133/219543549-18cfe600-92d2-40b6-
 
 ## What is a Double Pendulum
 
-## What is an LSTM
+<p align="center">
+ <img src="imgs/pendulum.jpg" width="60%" height="60%">
+</p>
 
-## Results
 
 ## Usage
 
@@ -54,6 +46,9 @@ https://user-images.githubusercontent.com/93766133/219543549-18cfe600-92d2-40b6-
 
 ## Conclusion
 
+This was just a test to see how LSTM performs on time series describing the chaotic path of a double pendulum.
+Next steps could be to use Deep Reinforcement Learning to find equlibrium points.
+
 ## References
 
 > - [1] [Double Pendulum - Wikipedia](https://en.wikipedia.org/wiki/Double_pendulum). 
@@ -61,7 +56,7 @@ https://user-images.githubusercontent.com/93766133/219543549-18cfe600-92d2-40b6-
 Double pendulum and deep learning](https://icsabai.github.io/simulationsMsc/dvtulf_sd.pdf). 
 > - [3] Nicolas James [Hamiltonian and Lagrangian Mechanics](http://nicf.net/articles/hamiltonian-mechanics/). 
 
-hey
+
                                                     
 
 
