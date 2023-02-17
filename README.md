@@ -46,6 +46,8 @@ The interesting aspect with solving partial derivative equations with Deep Neura
 > - [2] Bálint Hantos [Solving differential equations:
 Double pendulum and deep learning](https://icsabai.github.io/simulationsMsc/dvtulf_sd.pdf). 
 > - [3] Nicolas James [Hamiltonian and Lagrangian Mechanics](http://nicf.net/articles/hamiltonian-mechanics/). 
+
+hey
                                                     
 
 
