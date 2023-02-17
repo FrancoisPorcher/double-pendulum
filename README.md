@@ -24,6 +24,12 @@ https://user-images.githubusercontent.com/93766133/219543549-18cfe600-92d2-40b6-
  <img src="imgs/pendulum.jpg" width="60%" height="60%">
 </p>
 
+A pendulum is a simple mechanical device consisting of a mass (or bob) suspended from a fixed point by a string, rod, or wire. When the mass is pulled to one side and released, it swings back and forth in a periodic motion.
+
+When a pendulum is set into motion, it can exhibit a behavior known as chaos. Chaos refers to a complex and unpredictable behavior that emerges from simple and deterministic systems.
+
+In the case of a pendulum, chaos can occur when the motion becomes sensitive to small variations in the initial conditions. This means that tiny differences in the initial position, velocity, or angle of release can result in significantly different trajectories over time. As a result, the motion of a pendulum can become chaotic and appear random.
+
 
 ## Usage
 
