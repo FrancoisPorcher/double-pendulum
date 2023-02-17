@@ -8,10 +8,17 @@ The interesting aspect with solving partial derivative equations with Deep Neura
  <img src="imgs/pendulum.jpg" width="60%" height="60%">
 </p>
 
+<video src="imgs/animation.mp4" controls="controls" style="max-width: 730px;">
+</video>
+
 <p align="center">
  <video src="imgs/animation.mp4" width="60%" height="60%">
 </p>
 
+
+
+
+https://user-images.githubusercontent.com/93766133/219543549-18cfe600-92d2-40b6-a9f0-c59c08344018.mp4
 
 
 
