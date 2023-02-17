@@ -52,6 +52,8 @@ In the case of a pendulum, chaos can occur when the motion becomes sensitive to 
 This was just a test to see how LSTM performs on time series describing the chaotic path of a double pendulum.
 Next steps could be to use Deep Reinforcement Learning to find equlibrium points.
 
+Physics Informed Neural Networks or Noether Neural Networks
+
 ## References
 
 > - [1] [Double Pendulum - Wikipedia](https://en.wikipedia.org/wiki/Double_pendulum). 
