@@ -8,6 +8,12 @@ The interesting aspect with solving partial derivative equations with Deep Neura
  <img src="imgs/pendulum.jpg" width="60%" height="60%">
 </p>
 
+<p align="center">
+ <video src="imgs/animation.mp4" width="60%" height="60%">
+</p>
+
+
+
 
 ## Contents
 - [What is a double pendulum?](#what-is-a-double-pendulum)
