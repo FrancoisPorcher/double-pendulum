@@ -7,16 +7,13 @@ The interesting aspect with solving partial derivative equations with Deep Neura
 
 
 
-
-
 https://user-images.githubusercontent.com/93766133/219543549-18cfe600-92d2-40b6-a9f0-c59c08344018.mp4
 
 
 
 ## Contents
 - [What is a double pendulum?](#what-is-a-double-pendulum)
-- [What is an LSTM?](#what-is-an-lstm)
-- [Results](#conclusion)
+- [Conclusion](#conclusion)
 - [Usage](#usage)
 - [References](#references)
 
