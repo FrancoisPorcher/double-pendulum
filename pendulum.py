@@ -25,7 +25,13 @@ class DoublePendulum():
         print('The double pendulum is initialized with the following physical parameters:')
         self.get_physical_parameters()
         
-    def update_physical_parameters(self, m1 = None, m2 = None, l1 = None, l2 = None, g = None, number_of_points = None):
+    def update_physical_parameters(self, 
+                                   m1 = None, 
+                                   m2 = None, 
+                                   l1 = None, 
+                                   l2 = None, 
+                                   g = None, 
+                                   number_of_points = None):
         """_summary_: update the physical parameters of the double pendulum
 
         Args:
@@ -49,20 +55,18 @@ class DoublePendulum():
             self.number_of_points = number_of_points
         
     def get_physical_parameters(self):
-        print(
-            "m1 = ", self.m1, "kg",
-            "m2 = ", self.m2, "kg",
-            "l1 = ", self.l1, "m",
-            "l2 = ", self.l2, "m",
-            "g = ", self.g, "m/s^2",
-            "number of points = ", self.number_of_points,
-        )
+        print("m1 = ", self.m1, "kg")
+        print("m2 = ", self.m2, "kg")
+        print("l1 = ", self.l1, "m")
+        print("l2 = ", self.l2, "m")
+        print("g = ", self.g, "m/s^2")
+        print("number of points = ", self.number_of_points)
         
         return self.m1, self.m2, self.l1, self.l2, self.g, self.number_of_points
         
     def initial_condition(self, 
-                          theta1 = -10, 
-                          theta2 = 10, 
+                          theta1 = 0, 
+                          theta2 = 0, 
                           theta1_dot = 0, 
                           theta2_dot = 0):
         
@@ -79,7 +83,7 @@ class DoublePendulum():
         self.theta1_dot = theta1_dot
         self.theta2_dot = theta2_dot
         
-        self.u0 = [theta1, theta1_dot, theta2, theta2_dot]
+        self.u0 = [self.theta1, self.theta1_dot, self.theta2, self.theta2_dot]
 
 
     def double_pendulum_step(self,u,t,m1,m2,L1,L2,g):

@@ -1,35 +1,74 @@
-import torch
-import torch.nn as nn
+
 from sklearn.preprocessing import MinMaxScaler
 import numpy as np
 import matplotlib.pyplot as plt
+import torch.nn as nn
+import torch
+device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+print("device = ", device)
 
-class MyLSTM(nn.Module):
-    def __init__(self, hidden_size = 100):
-        super().__init__()
-        self.lstm = nn.LSTM(4, hidden_size)
-        self.linear = nn.Linear(hidden_size, 4)
-        self.c_h = (torch.zeros(1,1,hidden_size),
-                    torch.zeros(1,1,hidden_size))
-    def forward(self, x):
-        h, self.c_h= self.lstm(x.view(len(x) ,1, -1), self.c_h)
-        predictions = self.linear(h.view(len(x), -1))
-        return predictions[-1]
+    
+
+
+class LSTM(nn.Module):
+    def __init__(self, input_dim, output_dim, hidden_size , num_layers):
+        super(LSTM, self).__init__()
+        self.num_layers = num_layers
+        self.input_size = input_dim
+        self.output_size = output_dim
+        self.hidden_size = hidden_size
+        self.lstm = nn.LSTM(input_size=input_dim , hidden_size = hidden_size , num_layers= num_layers)
+        self.fc = nn.Linear(hidden_size, output_dim)
+
+    def forward(self,x,hn,cn):
+        out , (hn,cn) = self.lstm(x , (hn,cn))
+        final_out = self.fc(out[-1])
+        return final_out,hn,cn
+
+    def predict(self,x):
+        hn,cn  = self.init()
+        final_out = self.fc(out[-1])
+        return final_out
+
+    def init(self, batch_size):
+        h0 =  torch.zeros(self.num_layers , batch_size , self.hidden_size).to(device)
+        c0 =  torch.zeros(self.num_layers , batch_size , self.hidden_size).to(device)
+        return h0 , c0
+
+
+
+
+
+    
+    
 
 #this is the full OneStep function.   it 
-def OneStep(double_pendulum, data, model, steps = 100):
+def OneStep(double_pendulum, trajectory, model):
+    """_summary_
+
+    Args:
+        double_pendulum (class): Double pendulum class
+        trajectory (_type_): trajectory computed by the finite difference method
+        model (_type_): lstm model
+        steps (int, optional): _description_. Defaults to 100.
+
+    Returns:
+        _type_: _description_
+    """
+    
+    # Get the parameters from the double pendulum
     L1 = double_pendulum.l1
     L2 = double_pendulum.l2
     
-    print('data set length =', len(data))
+    print('trajectory set length =', len(trajectory))
     train_window = 10
     scaler = MinMaxScaler(feature_range=(-1, 1))
-    train_data_normalized = scaler.fit_transform(data.reshape(-1, 4))
-    fut_pred = len(data) - train_window
-    test_inputs = train_data_normalized[0:train_window].reshape(train_window,4).tolist()
+    train_trajectory_normalized = scaler.fit_transform(trajectory.reshape(-1, 4))
+    fut_pred = len(trajectory) - train_window
+    test_inputs = train_trajectory_normalized[0:train_window].reshape(train_window,4).tolist()
     #print(test_inputs)
-    s2 = train_data_normalized.reshape(len(data),4).tolist()
-    realdata = data
+    s2 = train_trajectory_normalized.reshape(len(trajectory),4).tolist()
+    realtrajectory = trajectory
     
     model.eval()
     preds = test_inputs.copy()
@@ -49,10 +88,10 @@ def OneStep(double_pendulum, data, model, steps = 100):
     # the following will plot the lower mass path for steps using the actual ODE sover
     # and the predicitons
     plt.figure( figsize=(10,5))
-    u0 = data[:,0]     # theta_1 
-    u1 = data[:,1]     # omega 1
-    u2 = data[:,2]     # theta_2 
-    u3 = data[:,3]     # omega_2 
+    u0 = trajectory[:,0]     # theta_1 
+    u1 = trajectory[:,1]     # omega 1
+    u2 = trajectory[:,2]     # theta_2 
+    u3 = trajectory[:,3]     # omega_2 
     up0 = actual_predictions[:,0]     # theta_1 
     up1 = actual_predictions[:,1]     # omega 1
     up2 = actual_predictions[:,2]     # theta_2 
@@ -66,8 +105,8 @@ def OneStep(double_pendulum, data, model, steps = 100):
     xp2 = xp1 + L2*np.sin(up2);     # Second Pendulum
     yp2 = yp1 - L2*np.cos(up2);
     print(x2[0], y2[0])
-    plt.plot(x2[0:steps], y2[0:steps], color='r')
-    plt.plot(xp2[0:steps],yp2[0:steps] , color='g')
+    plt.plot(x2[:], y2[:], color='r')
+    plt.plot(xp2[:],yp2[:] , color='g')
     err = 0.0
     errs = 0.0
     cnt = 0
@@ -78,7 +117,7 @@ def OneStep(double_pendulum, data, model, steps = 100):
     
     #the following attempts to make an estimate of the error.  not very good.
     for i in range(len(actual_predictions)):
-        er =np.linalg.norm(realdata[i]-actual_predictions[i])
+        er =np.linalg.norm(realtrajectory[i]-actual_predictions[i])
         err += er
         if er > maxerr:
             maxerr = er
