@@ -1,4 +1,4 @@
-# Modelisation of a Chaotic Double Pendulum with LSTM
+# Modelisation of a Chaotic Double Pendulum with stacked LSTM
 
 In this project I model the behaviour of a Double Pendulum with LSTM, and compare it with a Finite Difference solver.
 
